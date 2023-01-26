@@ -1,19 +1,10 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
-    content: ['./src/**/*.js'],
-    darkMode: 'media',
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-            },
-        },
+    content: ["{pages,src}/**/*.{js,ts,jsx,tsx}"],
+    darkMode: "class",
+    important: true, // important in prod is must be
+    plugins: [require("daisyui")],
+    daisyui: {
+        themes: ["light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"]
     },
-    variants: {
-        extend: {
-            opacity: ['disabled'],
-        },
-    },
-    plugins: [require('@tailwindcss/forms')],
-}
+
+};
