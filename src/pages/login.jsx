@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 export default function Login() {
   const router = useRouter();
 
@@ -37,34 +38,15 @@ export default function Login() {
   };
   return (
     <>
+      <Head>
+        <title>Login - Jadwal</title>
+      </Head>
       <div className="hero min-h-screen bg-base-200">
         <div className="w-96">
           <div className="text-center lg:text-left mb-8">
             <h1 className="text-5xl font-bold">Welcome to Jadwal</h1>
           </div>
           <div className="card flex-shrink-0 w-96 max-w-sm shadow-2xl bg-base-100">
-            {/* <form onSubmit={submitForm} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input type="text" placeholder="email" className="input input-bordered" />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input type="text" placeholder="password" className="input input-bordered" />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
-              </div>
-            </form> */}
             <form className="card-body" onSubmit={submitForm}>
               {/* Email Address */}
               <div className="form-control">

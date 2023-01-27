@@ -4,7 +4,7 @@ import { Appointments } from "@/hooks/appointments";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-const Dashboard = () => {
+const Create = () => {
   const { post, get } = Appointments();
 
   const [topic, setTopic] = useState("");
@@ -39,9 +39,7 @@ const Dashboard = () => {
       header={
         <div className="flex items-center gap-x-10">
           <h2 className="font-semibold text-xl text-gray-800 leading-tight">Appointments</h2>
-          <button className="btn btn-primary">
-            Create
-          </button>
+          <button className="btn btn-primary">Create</button>
         </div>
       }
     >
@@ -59,4 +57,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Create;

@@ -9,6 +9,7 @@ import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
 import { useState } from 'react'
+import Head from 'next/head'
 
 const ForgotPassword = () => {
     const { forgotPassword } = useAuth({ middleware: 'guest' })
@@ -24,47 +25,31 @@ const ForgotPassword = () => {
     }
 
     return (
-        <GuestLayout>
-            <AuthCard
-                logo={
-                    <Link href="/">
-                        <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
-                    </Link>
-                }>
-                <div className="mb-4 text-sm text-gray-600">
-                    Forgot your password? No problem. Just let us know your
-                    email address and we will email you a password reset link
-                    that will allow you to choose a new one.
-                </div>
+      <>
+        <Head>
+          <title>Reset - Jadwal</title>
+        </Head>
+        <div className="hero min-h-screen bg-base-200">
+          {/* Session Status */}
+          <AuthSessionStatus className="mb-4" status={status} />
+          <div className="card flex-shrink-0 w-96 max-w-sm shadow-2xl bg-base-100">
+            <form className="card-body" onSubmit={submitForm}>
+              {/* Email Address */}
+              <div className="form-control">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" name="email" value={email} className="input input-bordered" onChange={(event) => setEmail(event.target.value)} required autoFocus />
 
-                {/* Session Status */}
-                <AuthSessionStatus className="mb-4" status={status} />
+                <InputError messages={errors.email} className="mt-2" />
+              </div>
 
-                <form onSubmit={submitForm}>
-                    {/* Email Address */}
-                    <div>
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                            id="email"
-                            type="email"
-                            name="email"
-                            value={email}
-                            className="block mt-1 w-full"
-                            onChange={event => setEmail(event.target.value)}
-                            required
-                            autoFocus
-                        />
-
-                        <InputError messages={errors.email} className="mt-2" />
-                    </div>
-
-                    <div className="flex items-center justify-end mt-4">
-                        <Button>Email Password Reset Link</Button>
-                    </div>
-                </form>
-            </AuthCard>
-        </GuestLayout>
-    )
+              <div className="">
+                <button className="btn btn-primary">Email Password Reset Link</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </>
+    );
 }
 
 export default ForgotPassword

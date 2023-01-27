@@ -10,13 +10,13 @@ const AppLayout = ({ header, children }) => {
 
             {/* Page Heading */}
             <header className="bg-white shadow">
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div className="container mx-auto py-6 ">
                     {header}
                 </div>
             </header>
 
             {/* Page Content */}
-            <main>{children}</main>
+            <main className='p-10'>{children}</main>
         </div>
     )
 }
