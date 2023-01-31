@@ -11,6 +11,7 @@ import { useState } from "react";
 import Head from "next/head";
 
 const Register = () => {
+  
   const { register } = useAuth({
     middleware: "guest",
     redirectIfAuthenticated: "/dashboard",
@@ -19,6 +20,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -27,6 +29,7 @@ const Register = () => {
 
     register({
       name,
+      username,
       email,
       password,
       password_confirmation: passwordConfirmation,
@@ -43,6 +46,13 @@ const Register = () => {
         <div className="card flex-shrink-0 w-96 max-w-sm shadow-2xl bg-base-100">
           <form className="card-body" onSubmit={submitForm}>
             {/* Name */}
+            <div className="form-control">
+              <Label htmlFor="username">Username</Label>
+
+              <Input id="username" type="text" value={username} className="input input-bordered" onChange={(event) => setUserName(event.target.value)} required autoFocus />
+
+              <InputError messages={errors.name} className="mt-2" />
+            </div>
             <div className="form-control">
               <Label htmlFor="name">Name</Label>
 

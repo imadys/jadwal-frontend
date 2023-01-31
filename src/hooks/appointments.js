@@ -21,7 +21,6 @@ export const Appointments = ({ middleware, redirectIfAuthenticated } = {}) => {
     const post = async ({ setErrors, ...props }) => {
         await csrf()
 
-
         axios
             .post('/api/meetings', props)
             .then(() => mutate())

@@ -1,3 +1,19 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.c-info{background: #3abff8;}
+.c-success{background: #37d399;}
+.c-warning{background: #fcbc23;}
+.c-error{background: #f87272;}
+
+.c-info-border{border-color: #3abff8;}
+.c-success-border{border-color: #37d399;}
+.c-warning-border{border-color: #fcbc23;}
+.c-error-border{border-color: #f87272;}
+
+
+.c-info-shadow{--tw-shadow: 0 5px 0px 0px #3abff8 !important;}
+.c-success-shadow{--tw-shadow: 0 5px 0px 0px #37d399 !important;}
+.c-warning-shadow{--tw-shadow: 0 5px 0px 0px #fcbc23 !important;}
+.c-error-shadow{--tw-shadow: 0 5px 0px 0px #f87272 !important;}

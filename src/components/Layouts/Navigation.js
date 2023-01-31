@@ -24,14 +24,15 @@ const Navigation = ({ user }) => {
                     <a className="btn btn-ghost normal-case text-xl">Jadwal</a>
                     <ul className='menu menu-horizontal px-1 mr-auto'>
                         <li><a href='/dashboard' className={router.pathname === '/dashboard' ? 'bg-base-200' : ''}>Dashboard</a></li>
+                        <li><a href='/services' className={router.pathname.startsWith('/services') ? 'bg-base-200' : ''}>Services</a></li>
                     </ul>                    
                 </div>
                 <div className="flex-none gap-2">
 
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://placeimg.com/80/80/people" />
+                            <div className="w-10 rounded-full flex items-center justify-center bg-primary">
+                                {user?.name[0]}
                             </div>
                         </label>
                         <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
