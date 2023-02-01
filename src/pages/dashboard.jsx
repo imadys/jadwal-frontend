@@ -32,10 +32,6 @@ const Dashboard = () => {
       header={
         <div className="flex items-center gap-x-10">
           <h2 className="font-semibold text-xl text-gray-800 leading-tight mr-auto">Appointments</h2>
-          <Link href="/services/create" className="btn btn-primary flex gap-2">
-            Create
-            <FontAwesomeIcon icon={faPlus} />
-          </Link>
         </div>
       }
     >
@@ -45,10 +41,21 @@ const Dashboard = () => {
       {loading == true ? "loading" : ""}
 
       <div className="flex flex-wrap gap-5">
-        {appointments?.map((appointment,index) => {
+        {appointments?.map((appointment, index) => {
           return <Card appointment={appointment} key={index} />;
         })}
       </div>
+      {appointments?.length <= 0 && (
+        <div className="alert shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info flex-shrink-0 w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>You don't have any appointment for now.</span>
+          </div>
+
+        </div>
+      )}
     </AppLayout>
   );
 };
