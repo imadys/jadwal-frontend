@@ -2,10 +2,13 @@
 ```js
 git clone https://github.com/imadys/jadwal-frontend.git
 cd jadwal-frontend
+```
+copy .env.example and rename it to .env.local
+```js
 npm install
 npm run dev
 ```
-copy .env.example and rename it to .env.local
+
 ```js
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```

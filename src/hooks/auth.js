@@ -49,6 +49,21 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 setErrors(error.response.data.errors)
             })
     }
+    const update = async ({ setErrors, setStatus, ...props }) => {
+        await csrf()
+
+        setErrors([])
+        setStatus(null)
+
+        axios
+            .put('/update', props)
+            .then(() => mutate())
+            .catch(error => {
+                if (error.response.status !== 422) throw error
+
+                setErrors(error.response.data.errors)
+            })
+    }
 
     const forgotPassword = async ({ setErrors, setStatus, email }) => {
         await csrf()

@@ -44,16 +44,16 @@ export default function ProfilePage() {
       setIsError,
     });
 
-        if (isError) {
-          toast.error("There is an error ...");
-        } else {
-          toast.success("Appointment created ... redirecting");
-        }
+    if (isError) {
+      toast.error("There is an error ...");
+    } else {
+      toast.success("Appointment created ... redirecting");
+    }
   };
 
   useEffect(() => {
     if (!router.isReady) return;
-    axios(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/profile/${profile}`)
+    axios(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/${profile}`)
       .then((res) => res.data)
       .then((data) => {
         setUser(data.user);
@@ -61,7 +61,6 @@ export default function ProfilePage() {
           setAvailabilities((old) => [...old, ...[new Date(item)]]);
         });
         console.log(availabilities);
-
       })
       .catch((error) => {
         router.push("/404");
@@ -95,59 +94,61 @@ export default function ProfilePage() {
                   );
                 })}
               </div>
-              <hr className="my-10" />
               {selectedService?.id && (
-                <div className="card bg-base-100 shadow-xl">
-                  <div className="card-body flex">
-                    <div>
-                      <h2 className="card-title mb-3">
-                        {selectedService.name} | {selectedService.duration} Min. | <span className="text-secondary">Zoom</span>
-                      </h2>
-                      <div dangerouslySetInnerHTML={{ __html: selectedService.description }}></div>
+                <>
+                  <hr className="my-10" />
+                  <div className="card bg-base-100 shadow-xl">
+                    <div className="card-body flex">
+                      <div>
+                        <h2 className="card-title mb-3">
+                          {selectedService.name} | {selectedService.duration} Min. | <span className="text-secondary">Zoom</span>
+                        </h2>
+                        <div dangerouslySetInnerHTML={{ __html: selectedService.description }}></div>
 
-                      <div className="form-control">
-                        <Label htmlFor="name" className="label">
-                          Your name
-                        </Label>
+                        <div className="form-control">
+                          <Label htmlFor="name" className="label">
+                            Your name
+                          </Label>
 
-                        <Input id="name" type="text" value={name} className="input input-bordered" onChange={(event) => setName(event.target.value)} required autoFocus />
+                          <Input id="name" type="text" value={name} className="input input-bordered" onChange={(event) => setName(event.target.value)} required autoFocus />
 
-                        <InputError messages={errors.name} className="mt-2" />
-                      </div>
-                      <div className="form-control">
-                        <Label htmlFor="email" className="label">
-                          Email
-                        </Label>
+                          <InputError messages={errors.name} className="mt-2" />
+                        </div>
+                        <div className="form-control">
+                          <Label htmlFor="email" className="label">
+                            Email
+                          </Label>
 
-                        <Input id="email" type="email" value={email} className="input input-bordered" onChange={(event) => setEmail(event.target.value)} required autoFocus />
+                          <Input id="email" type="email" value={email} className="input input-bordered" onChange={(event) => setEmail(event.target.value)} required autoFocus />
 
-                        <InputError messages={errors.email} className="mt-2" />
-                      </div>
-                      <div className="form-control">
-                        <Label htmlFor="appointment_date" className="label">
-                          Appointment date
-                        </Label>
-                        <ReactDatePicker
-                          className="input input-bordered w-full"
-                          selected={appointment_date}
-                          minDate={new Date()}
-                          maxDate={addDays(new Date(), selectedService.date_range)}
-                          onChange={(date) => setAppointmentDate(date)}
-                          excludeDates={availabilities}
-                          placeholderText="Select appointment date"
-                          dateFormat="yyyy-MM-dd"
-                        />
-                        <InputError messages={errors.appointment_date} className="mt-2" />
-                      </div>
+                          <InputError messages={errors.email} className="mt-2" />
+                        </div>
+                        <div className="form-control">
+                          <Label htmlFor="appointment_date" className="label">
+                            Appointment date
+                          </Label>
+                          <ReactDatePicker
+                            className="input input-bordered w-full"
+                            selected={appointment_date}
+                            minDate={new Date()}
+                            maxDate={addDays(new Date(), selectedService.date_range)}
+                            onChange={(date) => setAppointmentDate(date)}
+                            excludeDates={availabilities}
+                            placeholderText="Select appointment date"
+                            dateFormat="yyyy-MM-dd"
+                          />
+                          <InputError messages={errors.appointment_date} className="mt-2" />
+                        </div>
 
-                      <div className="mt-5 ml-auto">
-                        <button type="submit" className={isLoading ? "btn btn-sm btn-primary loading" : "btn btn-sm btn-primary"}>
-                          Submit
-                        </button>
+                        <div className="mt-5 ml-auto">
+                          <button type="submit" className={isLoading ? "btn btn-sm btn-primary loading" : "btn btn-sm btn-primary"}>
+                            Submit
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </>
               )}
             </form>
           </div>

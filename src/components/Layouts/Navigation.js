@@ -9,8 +9,11 @@ import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShare } from '@fortawesome/free-solid-svg-icons'
+import { toast } from 'react-hot-toast'
 
-const Navigation = ({ user }) => {
+const Navigation = ({ user,ogUrl }) => {
     const router = useRouter()
 
     const { logout } = useAuth()
@@ -37,11 +40,16 @@ const Navigation = ({ user }) => {
                         </label>
                         <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                             <li>
-                                <a className="justify-between">
-                                    Profile
-                                </a>
+                                <button onClick={() => {
+                                    navigator.clipboard.writeText(ogUrl + '/' + user?.username),
+                                        toast.success("Link copied!")
+
+                                }} >
+                                    <FontAwesomeIcon icon={faShare} className="mr-2" />
+                                    Copy profile URL
+                                </button>
                             </li>
-                            <li><a>Settings</a></li>
+                            <li><Link href="/settings">Settings</Link></li>
                             <li><a onClick={logout}>Logout</a></li>
                         </ul>
                     </div>
