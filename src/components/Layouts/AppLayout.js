@@ -10,7 +10,7 @@ const AppLayout = ({ header, children }) => {
 
             {/* Page Heading */}
             <header className="bg-white shadow">
-                <div className="container mx-auto py-6 ">
+                <div className="container mx-auto p-6">
                     {header}
                 </div>
             </header>
