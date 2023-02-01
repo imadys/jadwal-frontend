@@ -17,3 +17,6 @@
 .c-success-shadow{--tw-shadow: 0 5px 0px 0px #37d399 !important;}
 .c-warning-shadow{--tw-shadow: 0 5px 0px 0px #fcbc23 !important;}
 .c-error-shadow{--tw-shadow: 0 5px 0px 0px #f87272 !important;}
+.react-datepicker__triangle{
+    display: none !important;
+}
