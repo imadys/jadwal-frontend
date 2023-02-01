@@ -116,7 +116,7 @@ const Edit = () => {
         <div className="card-body">
           <form onSubmit={updateForm}>
             <h2 className="card-title">What this service should be called?</h2>
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <div className="form-control w-full">
                 <Label htmlFor="name" className="label">
                   Service
@@ -151,7 +151,7 @@ const Edit = () => {
               <div ref={quillRef} />
               <InputError messages={errors.descreption} className="mt-2" />
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <div className="form-control w-full">
                 <Label htmlFor="custom_link" className="label">
                   Custom link
