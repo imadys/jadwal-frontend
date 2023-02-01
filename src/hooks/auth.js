@@ -49,18 +49,20 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 setErrors(error.response.data.errors)
             })
     }
-    const update = async ({ setErrors, setStatus, ...props }) => {
+    const update = async ({ setErrors, setIsError, ...props }) => {
         await csrf()
 
         setErrors([])
-        setStatus(null)
-
+        setIsError(false);
         axios
-            .put('/update', props)
-            .then(() => mutate())
+            .put(`api/settings/${props.id}`, props)
+            .then(() => {
+                mutate();
+                setIsError(false);
+            })
             .catch(error => {
                 if (error.response.status !== 422) throw error
-
+                setIsError(true);
                 setErrors(error.response.data.errors)
             })
     }
@@ -132,5 +134,6 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         resetPassword,
         resendEmailVerification,
         logout,
+        update
     }
 }

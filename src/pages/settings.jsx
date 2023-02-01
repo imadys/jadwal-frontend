@@ -10,36 +10,42 @@ import { useAuth } from "@/hooks/auth";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import AppLayout from "@/components/Layouts/AppLayout";
+import { toast } from "react-hot-toast";
 
 const Settings = () => {
   const { user } = useAuth({ middleware: "auth" });
 
-  const { register } = useAuth({
-    middleware: "guest",
-  });
+  const { update } = useAuth();
 
   const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  const [old_password, setOldPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [isError, setIsError] = useState(false);
+
   const [errors, setErrors] = useState([]);
 
   const submitForm = (event) => {
     event.preventDefault();
 
-    register({
+    update({
       name,
+      id,
       username,
       email,
-      password,
-      password_confirmation: passwordConfirmation,
       setErrors,
+      setIsError,
     });
+
+    if (!isError) {
+      toast.success("User info updated!");
+    } else {
+      toast.error("There is an error ...");
+    }    
   };
 
   useEffect(() => {
+    setId(user?.id);
     setName(user?.name);
     setUserName(user?.username);
     setEmail(user?.email);
@@ -61,7 +67,7 @@ const Settings = () => {
           {/* Name */}
           <div className="form-control">
             <Label htmlFor="username">Username</Label>
-
+            <small className="text-accent mb-2">this username will be used for your page</small>
             <Input id="username" type="text" value={username} className="input input-bordered" onChange={(event) => setUserName(event.target.value)} required autoFocus />
 
             <InputError messages={errors.name} className="mt-2" />
@@ -81,31 +87,6 @@ const Settings = () => {
             <Input id="email" type="email" value={email} className="input input-bordered" onChange={(event) => setEmail(event.target.value)} required />
 
             <InputError messages={errors.email} className="mt-2" />
-          </div>
-
-          {/* Password */}
-          <div className="mt-4 form-control">
-            <Label htmlFor="password">Old password</Label>
-
-            <Input id="password" type="password" value={old_password} className="input input-bordered" onChange={(event) => setOldPassword(event.target.value)} required autoComplete="new-password" />
-
-            <InputError messages={errors.old_password} className="mt-2" />
-          </div>
-          <div className="mt-4 form-control">
-            <Label htmlFor="password">Password</Label>
-
-            <Input id="password" type="password" value={password} className="input input-bordered" onChange={(event) => setPassword(event.target.value)} required autoComplete="new-password" />
-
-            <InputError messages={errors.password} className="mt-2" />
-          </div>
-
-          {/* Confirm Password */}
-          <div className="mt-4 form-control">
-            <Label htmlFor="passwordConfirmation">Confirm Password</Label>
-
-            <Input id="passwordConfirmation" type="password" value={passwordConfirmation} className="input input-bordered" onChange={(event) => setPasswordConfirmation(event.target.value)} required />
-
-            <InputError messages={errors.password_confirmation} className="mt-2" />
           </div>
 
           <div className="flex items-center justify-end mt-4">
