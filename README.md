@@ -18,7 +18,7 @@ paste your backend link
 
 ## 2.Services listing page
 The idea is creating a way to show your service and make people who want this service to make an appointment with you.
-<img src="/images/Screenshot 2023-02-01 at 04.52.04.png">
+<img src="/images/Screenshot 2023-02-01 at 04.52.40.png">
 
 ## 3.Services Creation page
 <img src="/images/Screenshot 2023-02-01 at 04.53.01.png">
