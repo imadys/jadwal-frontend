@@ -36,7 +36,7 @@ const Dashboard = () => {
       }
     >
       <Head>
-        <title>Laravel - Dashboard</title>
+        <title>Jadwal - Dashboard</title>
       </Head>
       {loading == true ? "loading" : ""}
 
@@ -53,7 +53,6 @@ const Dashboard = () => {
             </svg>
             <span>You don't have any appointment for now.</span>
           </div>
-
         </div>
       )}
     </AppLayout>

@@ -24,7 +24,7 @@ const Dashboard = () => {
     <AppLayout
       header={
         <div className="flex items-center gap-x-10">
-          <h2 className="font-semibold text-xl text-gray-800 leading-tight mr-auto">services</h2>
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight mr-auto">Services</h2>
           <Link href="/services/create" className="btn btn-primary flex gap-2">
             Create
             <FontAwesomeIcon icon={faPlus} />
@@ -33,7 +33,7 @@ const Dashboard = () => {
       }
     >
       <Head>
-        <title>Laravel - Dashboard</title>
+        <title>Jadwal - Services</title>
       </Head>
       {loading == true ? "loading" : ""}
 
